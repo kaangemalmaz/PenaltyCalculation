@@ -1,0 +1,43 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<form asp-action="Index" method="post">
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label asp-for="@Model.Book.CheckOutDate">Alış Tarihini Seçiniz</label>
+            <input asp-for="@Model.Book.CheckOutDate" class="form-control" required/>
+            <span asp-validation-for="@Model.Book.CheckOutDate" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-12">
+            <label asp-for="@Model.Book.ReturnDate"> Geri Dönüş Tarihini Seçiniz</label>
+            <input asp-for="@Model.Book.ReturnDate" class="form-control" required />
+            <span asp-validation-for="@Model.Book.ReturnDate" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-12">
+            <label asp-for="@Model.Country.Id" class="control-label"> Ülke Seçiniz </label>
+            <select asp-for="@Model.Country.Id" class="form-control" asp-items="ViewBag.CountryList" required>
+            </select>
+            <span asp-validation-for="@Model.Country.Id" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12 mb-5">
+        <input type="submit" class="btn btn-success float-right" value="Hesapla" />
+    </div>
+
+</form>
+
+
+@if (Model != null)
+{
+    <div class="form-group">
+        <label asp-for="@Model.Book.TotalBusinessDay" class="control-label">Toplam İş Günü</label>
+        <input asp-for="@Model.Book.TotalBusinessDay" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Book.CalculatedPenalty" class="control-label">Toplam Tutar</label>
+        <input asp-for="@Model.Book.CalculatedPenalty" class="form-control" />
+    </div>
+}
